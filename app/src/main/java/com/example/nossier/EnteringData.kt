@@ -2,6 +2,7 @@ package com.example.nossier
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatButton
 
 class EnteringData : AppCompatActivity() {
@@ -9,7 +10,7 @@ class EnteringData : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entering_data)
 
-        val SaveButton = findViewById<AppCompatButton>(R.id.SaveButton)
+        val SaveButton = findViewById<ImageView>(R.id.SaveButton)
         SaveButton.setOnClickListener{
             finish()
         }

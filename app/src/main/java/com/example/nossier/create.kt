@@ -24,6 +24,7 @@ class create : DialogFragment() {
         val Today = view.findViewById<AppCompatButton>(R.id.Today)
         val Yesterday = view.findViewById<AppCompatButton>(R.id.YesterDay)
         val OtherDay = view.findViewById<AppCompatButton>(R.id.OtherDay)
+        val pussa = view.findViewById<View>(R.id.mussa)
 
         Today.setOnClickListener {
             val intent = Intent(requireActivity(), EnteringData::class.java)
@@ -39,6 +40,9 @@ class create : DialogFragment() {
             val intent = Intent(requireActivity(), EnteringData::class.java)
             startActivity(intent)
             requireFragmentManager().beginTransaction().remove(this).commit()
+        }
+        pussa.setOnClickListener{
+            dismiss()
         }
     }
 

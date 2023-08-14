@@ -1,5 +1,6 @@
 package com.example.nossier
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,6 +16,8 @@ class Homescreen : AppCompatActivity() {
     private val createFragment = create()
     private val calendarFragment = calender()
     private val entriesFragment = entreis()
+    private var createFragmentElevation: Float = 0f
+
     private   lateinit var fragmentContainer :FrameLayout
     private lateinit var bottomNavigation : BottomNavigationView
 
@@ -22,6 +25,8 @@ class Homescreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        createFragmentElevation = resources.getDimension(R.dimen.create_fragment_elevation)
         fragmentContainer = findViewById(R.id.fragment_container)
         bottomNavigation = findViewById(R.id.bottom_navigation)
          bottomNavigation  = findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -38,35 +43,21 @@ class Homescreen : AppCompatActivity() {
 
         replaceFragment(profileFragment)
     }
-
-//    private fun replaceFragment(fragment: Fragment) {
-//        val transaction = supportFragmentManager.beginTransaction()
-//        transaction.replace(R.id.fragment_container, fragment)
-//
-//        if (fragment == createFragment) {
-//            fragmentContainer.elevation = 10f // Set a higher elevation for the "Create" fragment
-//        } else {
-//            fragmentContainer.elevation = 0f // Reset the elevation for other fragments
-//        }
-//
-//        transaction.commit()
-//    }
-
-
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
 
-        if (fragment == createFragment) {
-            bottomNavigation.translationZ = -100f // Move the bottom navigation 100 pixels behind the create fragment
+        // Adjust elevation for Create fragment, and restore for other fragments
+        if (fragment is create) {
+            fragmentContainer.elevation = createFragmentElevation
         } else {
-            bottomNavigation.translationZ = 0f // Reset the translationZ of the bottom navigation
+            fragmentContainer.elevation = 0f // Restore default elevation for other fragments
         }
-
-
-
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
+
+
 
 
 }

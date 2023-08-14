@@ -12,11 +12,20 @@
         android:backgroundTint="@color/black"
         android:layout_height="match_parent">
 
+
+        <View
+            android:id="@+id/mussa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/OtherDay"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="665dp"
+            android:elevation="2dp"
             android:layout_marginEnd="124dp"
             android:background="@drawable/rounnd_1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +35,9 @@
             android:id="@+id/Today"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="615dp"
+            android:layout_marginTop="600dp"
             android:background="@drawable/round_2"
+            android:elevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +47,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="124dp"
+            android:elevation="2dp"
             android:layout_marginTop="665dp"
             android:background="@drawable/round_3"
             app:layout_constraintStart_toStartOf="parent"
