@@ -49,10 +49,12 @@ class Homescreen : AppCompatActivity() {
         // Adjust elevation for Create fragment, and restore for other fragments
         if (fragment is create) {
             fragmentContainer.elevation = createFragmentElevation
+            transaction.add(R.id.fragment_container, fragment)
         } else {
-            fragmentContainer.elevation = 0f // Restore default elevation for other fragments
+            fragmentContainer.elevation = 0f
+            transaction.replace(R.id.fragment_container, fragment)// Restore default elevation for other fragments
         }
-        transaction.replace(R.id.fragment_container, fragment)
+
         transaction.addToBackStack(null)
         transaction.commit()
     }

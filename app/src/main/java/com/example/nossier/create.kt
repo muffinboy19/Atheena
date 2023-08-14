@@ -1,5 +1,6 @@
 package com.example.nossier
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 
 class create : DialogFragment() {
+    private var shouldDismiss = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +43,10 @@ class create : DialogFragment() {
             startActivity(intent)
             requireFragmentManager().beginTransaction().remove(this).commit()
         }
-        pussa.setOnClickListener{
-            dismiss()
+        pussa.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .remove(this@create)
+                .commit()
         }
     }
-
 }
