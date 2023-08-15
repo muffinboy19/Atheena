@@ -12,6 +12,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+
+
+
+
     <style name="Theme.Nossier.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Nossier.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
