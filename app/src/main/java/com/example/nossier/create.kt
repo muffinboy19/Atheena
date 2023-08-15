@@ -2,6 +2,7 @@ package com.example.nossier
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
+import java.util.Date
 
 class create : DialogFragment() {
     private var shouldDismiss = false
@@ -29,13 +31,15 @@ class create : DialogFragment() {
         val pussa = view.findViewById<View>(R.id.mussa)
 
         Today.setOnClickListener {
-            val intent = Intent(requireActivity(), EnteringData::class.java)
-            startActivity(intent)
+            val currentDate = Calendar.getInstance().time
+            startEnteringDataActivity(currentDate)
             requireFragmentManager().beginTransaction().remove(this).commit()
         }
         Yesterday.setOnClickListener {
-            val intent = Intent(requireActivity(), EnteringData::class.java)
-            startActivity(intent)
+            val calendar = Calendar.getInstance()
+            calendar.add(Calendar.DAY_OF_MONTH, -1)
+            val yesterdayDate = calendar.time
+            startEnteringDataActivity(yesterdayDate)
             requireFragmentManager().beginTransaction().remove(this).commit()
         }
         OtherDay.setOnClickListener {
@@ -49,4 +53,10 @@ class create : DialogFragment() {
                 .commit()
         }
     }
+    private fun startEnteringDataActivity(selectedDate: Date) {
+        val intent = Intent(requireActivity(), EnteringData::class.java)
+        intent.putExtra("selectedDate", selectedDate.time)
+        startActivity(intent)
+    }
+
 }

@@ -25,15 +25,15 @@ class entreis : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_entreis, container, false)
-        notesRecyclerView = view.findViewById(R.id.notesRecyclerView)
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        notesRecyclerView = view.findViewById(R.id.notesRecyclerView)
         notesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
         val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "notes_db").build()
         val noteDao = db.noteDao()
         val notesList = noteDao.getAllNotes()

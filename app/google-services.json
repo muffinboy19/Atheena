@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "507750685436",
+    "project_id": "dailyme-3c3f7",
+    "storage_bucket": "dailyme-3c3f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507750685436:android:d946936b1f3ef904621579",
+        "android_client_info": {
+          "package_name": "com.example.nossier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507750685436-1guocmapnd60j9dsuk8jve6086jaq8qk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2QwnueUf-T--LuwblIKKNdB9OTwsslTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507750685436-1guocmapnd60j9dsuk8jve6086jaq8qk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
