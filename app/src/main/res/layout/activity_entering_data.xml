@@ -17,7 +17,7 @@
             android:layout_width="312dp"
             android:layout_height="125dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bacckg_1"
             android:gravity="start"
             android:hint="Add Note..."
@@ -32,7 +32,7 @@
             android:layout_width="145dp"
             android:layout_height="44dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bacckg_1"
             android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@+id/gallerphoto"
@@ -43,7 +43,7 @@
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:padding="9dp"
+                android:padding="11dp"
                 app:srcCompat="@drawable/gallery" />
 
             <TextView
@@ -53,11 +53,10 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/roboto"
                 android:gravity="center_vertical"
-                android:paddingStart="10dp"
                 android:paddingEnd="3dp"
                 android:text="Gallery"
                 android:textColor="@color/app_clor"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,7 +64,7 @@
             android:layout_width="145dp"
             android:layout_height="44dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bacckg_1"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +75,7 @@
                 android:layout_width="44dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:paddingVertical="6dp"
+                android:paddingVertical="8dp"
                 app:srcCompat="@drawable/camera2" />
 
             <TextView
@@ -90,7 +89,7 @@
                 android:paddingEnd="3dp"
                 android:text="Take Photo  "
                 android:textColor="@color/app_clor"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -98,7 +97,7 @@
             android:layout_width="320dp"
             android:layout_height="72dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bacckg_1"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +108,7 @@
             android:layout_width="320dp"
             android:layout_height="54dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bacckg_1"
             android:gravity="start"
             android:hint="Add Title..."
@@ -123,22 +122,37 @@
             android:id="@+id/TextViewDisplayDate"
             android:layout_width="100dp"
             android:layout_height="32dp"
-            android:layout_marginStart="46dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="23dp"
             android:background="@drawable/bacckg_1"
             android:gravity="start"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
+            android:paddingEnd="5dp"
             android:textColorHint="#BDBEC2"
             app:layout_constraintStart_toEndOf="@+id/textViewDate"
             app:layout_constraintTop_toBottomOf="@+id/EditTextViewTitle" />
+
+        <TextView
+            android:id="@+id/textViewDisplayMood"
+            android:layout_width="100dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bacckg_1"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"
+            android:textColorHint="#BDBEC2"
+            app:layout_constraintStart_toEndOf="@+id/TextViewmood"
+            app:layout_constraintTop_toBottomOf="@+id/moodrecylerView" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/EditTextViewBody">
@@ -198,7 +212,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -215,15 +229,11 @@
                 android:id="@+id/QuickNote"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center_vertical"
                 android:paddingStart="5dp"
-                android:paddingBottom="4dp"
-
                 android:text="Quick note"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -231,24 +241,26 @@
             android:id="@+id/SaveButton"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="48dp"
             android:background="@drawable/rounnd_1"
             android:backgroundTint="@color/app_clor"
             android:padding="6dp"
             android:src="@drawable/tick"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/moodrecylerView" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDisplayMood" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="28dp"
             android:fontFamily="@font/roboto"
             android:text="save"
             android:textColor="@color/app_clor"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/SaveButton" />
 
@@ -258,7 +270,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="24dp"
             android:layout_weight="0"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_vertical"
@@ -275,7 +287,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:layout_weight="0"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_vertical"
@@ -287,12 +299,29 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
 
         <TextView
+            android:id="@+id/TextViewmood"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="0"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_vertical"
+            android:paddingStart="5dp"
+            android:paddingBottom="4dp"
+            android:text="Current Mood"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/moodrecylerView" />
+
+        <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:layout_marginStart="19dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="0"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_vertical"
