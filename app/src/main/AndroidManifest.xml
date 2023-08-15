@@ -19,13 +19,13 @@
             android:name=".ContinueWithGoogle"
             android:exported="false" />
         <activity
-            android:name=".GettinStarted"
+            android:name=".Homescreen"
             android:exported="false" />
         <activity
             android:name=".EnteringData"
             android:exported="false" />
         <activity
-            android:name=".Homescreen"
+            android:name=".GettinStarted"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

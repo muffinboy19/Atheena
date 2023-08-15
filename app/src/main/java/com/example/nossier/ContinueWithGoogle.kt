@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -28,11 +29,16 @@ class ContinueWithGoogle : AppCompatActivity() {
     private val RC_SIGN_IN = 9001
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var loadingView: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_with_google)
         FirebaseApp.initializeApp(this)
         val google = findViewById<ImageView>(R.id.google)
+        val google2 = findViewById<TextView>(R.id.googletext)
+        loadingView = findViewById<View>(R.id.loadingView)
+
+
         firebaseAuth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -43,6 +49,12 @@ class ContinueWithGoogle : AppCompatActivity() {
         google.setOnClickListener {
             val signIntent = googleSignInClient.signInIntent
             startActivityForResult(signIntent, RC_SIGN_IN)
+            showLoadingView()
+        }
+        google2.setOnClickListener {
+            val signIntent = googleSignInClient.signInIntent
+            startActivityForResult(signIntent, RC_SIGN_IN)
+            showLoadingView()
         }
     }
     private fun firebaseAuthWithGoogle(account: GoogleSignInAccount?) {
@@ -50,6 +62,7 @@ class ContinueWithGoogle : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    hideLoadingView()
                     Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
                     val profileRegisterIntent = Intent(this, Homescreen::class.java)
                     startActivity(profileRegisterIntent)
@@ -73,6 +86,14 @@ class ContinueWithGoogle : AppCompatActivity() {
                 Log.w(TAG, "Google sign in failed", e)
             }
         }
+    }
+
+    private fun hideLoadingView() {
+        loadingView.visibility = View.GONE
+    }
+
+    private fun showLoadingView() {
+        loadingView.visibility = View.VISIBLE
     }
 
 }
