@@ -1,22 +1,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menu_profile"
-        android:title="Profile"
-        android:icon="@drawable/ic_launcher_background" />
-    <item
-        android:id="@+id/menu_stats"
-        android:title="Stats"
-        android:icon="@drawable/ic_launcher_background" />
-    <item
-        android:id="@+id/menu_create"
-        android:title="Create"
-        android:icon="@drawable/ic_launcher_background" />
-    <item
-        android:id="@+id/menu_calendar"
-        android:title="Calendar"
-        android:icon="@drawable/ic_launcher_background" />
+
     <item
         android:id="@+id/menu_entries"
         android:title="entires"
-        android:icon="@drawable/ic_launcher_background" />
+        android:icon="@drawable/note4" />
+
+    <item
+        android:id="@+id/menu_stats"
+        android:title="Stats"
+        android:icon="@drawable/stats2" />
+
+    <item
+        android:id="@+id/menu_create"
+        android:title="Create"
+        android:icon="@drawable/plus" />
+
+    <item
+        android:id="@+id/menu_calendar"
+        android:title="Calendar"
+        android:icon="@drawable/calender2" />
+    <item
+        android:id="@+id/menu_profile"
+        android:title="Profile"
+        android:icon="@drawable/user" />
+
+
+
+
+
 </menu>

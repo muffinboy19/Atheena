@@ -17,14 +17,19 @@ class EnteringData : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entering_data)
         FirebaseApp.initializeApp(this)
-
-        val currentDate = Date()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")  // Choose your desired date format
-        val formattedDate = dateFormat.format(currentDate)
         val noteBoddy = findViewById<EditText>(R.id.EditTextViewBody)
         val noteTitle = findViewById<EditText>(R.id.EditTextViewTitle)
         val SaveButton = findViewById<ImageView>(R.id.SaveButton)
-        val noteDage = findViewById<TextView>(R.id.d)
+        val noteDage = findViewById<TextView>(R.id.TextViewDisplayDate)
+
+
+        val formattedDate = intent.getLongExtra("selectedDate", -1)
+        if (formattedDate != -1L) {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd")  // Choose your desired date format
+            val selectedDate = Date(formattedDate)
+            val formattedSelectedDate = dateFormat.format(selectedDate)
+            noteDage.text = formattedSelectedDate
+        }
 
         val  moodRecyclerView  = findViewById<RecyclerView>(R.id.moodrecylerView)
         moodRecyclerView.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
@@ -36,31 +41,33 @@ class EnteringData : AppCompatActivity() {
             R.drawable.extreme_sad
         )
         val moodAdapter = MoodAdapter(images)
+
+
         SaveButton.setOnClickListener{
             val noteTitle = noteTitle.text.toString()
             val  notecontent = noteBoddy.text.toString()
             val currentTimeMillis = System.currentTimeMillis()
-            saveNoteToFirebase(noteTitle, noteContent)
-            saveNoteToLocalStorage(noteTitle, noteContent)
-            finish()
+//            saveNoteToFirebase(noteTitle, noteContent)
+//            saveNoteToLocalStorage(noteTitle, noteContent)
+//            finish()
         }
     }
 
 
 
-    private fun saveNoteToFirebase(content: String) {
-        val database = FirebaseDatabase.getInstance().reference
-        val notesReference = database.child("notes")
-        val noteId = notesReference.push().key
-        val newNote = Note(noteId, content)
-        notesReference.child(noteId).setValue(newNote)
-    }
-
-    private fun saveNoteToLocalStorage(content: String) {
-        val noteId = generateNoteId() // Implement a method to generate a unique ID
-        val fileName = "note_$noteId.txt"
-        openFileOutput(fileName, Context.MODE_PRIVATE).use {
-            it.write(content.toByteArray())
-        }
-    }
+//    private fun saveNoteToFirebase(content: String) {
+//        val database = FirebaseDatabase.getInstance().reference
+//        val notesReference = database.child("notes")
+//        val noteId = notesReference.push().key
+//        val newNote = Note(noteId, content)
+//        notesReference.child(noteId).setValue(newNote)
+//    }
+//
+//    private fun saveNoteToLocalStorage(content: String) {
+//        val noteId = generateNoteId() // Implement a method to generate a unique ID
+//        val fileName = "note_$noteId.txt"
+//        openFileOutput(fileName, Context.MODE_PRIVATE).use {
+//            it.write(content.toByteArray())
+//        }
+//    }
 }

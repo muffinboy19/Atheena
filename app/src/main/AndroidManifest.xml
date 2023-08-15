@@ -13,11 +13,6 @@
         android:theme="@style/Theme.Nossier"
         tools:targetApi="31">
         <activity
-            android:name=".baxa"
-            android:exported="false"
-            android:label="@string/title_activity_baxa"
-            android:theme="@style/Theme.Nossier.NoActionBar" />
-        <activity
             android:name=".ContinueWithGoogle"
             android:exported="false" />
         <activity

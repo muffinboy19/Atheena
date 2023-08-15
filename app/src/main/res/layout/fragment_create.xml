@@ -17,40 +17,92 @@
             android:id="@+id/mussa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageView
             android:id="@+id/OtherDay"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="665dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginTop="620dp"
+            android:layout_marginEnd="85dp"
             android:background="@drawable/rounnd_1"
             android:elevation="2dp"
+            android:padding="12dp"
+            android:src="@drawable/calender"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageView
             android:id="@+id/Today"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="580dp"
+            android:layout_marginTop="520dp"
             android:background="@drawable/round_2"
             android:elevation="2dp"
+            android:padding="10dp"
+            android:src="@drawable/clock"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <ImageView
             android:id="@+id/YesterDay"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="665dp"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="620dp"
             android:background="@drawable/round_3"
             android:elevation="2dp"
+            android:padding="10dp"
+            android:src="@drawable/back_arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/roboto"
+            android:text="Today"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Today" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="75dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/roboto"
+            android:text="OtherDay"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OtherDay" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="10dp"
+            android:elevation="2dp"
+            android:fontFamily="@font/roboto"
+            android:text="Yesterday"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/YesterDay" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

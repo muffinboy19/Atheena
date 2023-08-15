@@ -32,13 +32,6 @@ class entreis : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        notesRecyclerView = view.findViewById(R.id.notesRecyclerView)
-        notesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val db = Room.databaseBuilder(requireContext(), AppDatabase::class.java, "notes_db").build()
-        val noteDao = db.noteDao()
-        val notesList = noteDao.getAllNotes()
-        val adapter = NotesAdapter(notesList)
-        notesRecyclerView.adapter = adapter
 
 
     }

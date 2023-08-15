@@ -32,7 +32,7 @@ class ContinueWithGoogle : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_continue_with_google)
         FirebaseApp.initializeApp(this)
-        val google = findViewById<Button>(R.id.google)
+        val google = findViewById<ImageView>(R.id.google)
         firebaseAuth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
