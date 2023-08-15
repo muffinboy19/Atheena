@@ -2,10 +2,10 @@ package com.example.nossier
 
 data class Note(
 
-    val id: String,
-    val title: String,
-    val content: String,
-    val timestamp : Long = System.currentTimeMillis()
+    val title : String = "",
+    val body: String = "",
+    val date: String = "",
+    val mood: String = ""
 )
 
 
