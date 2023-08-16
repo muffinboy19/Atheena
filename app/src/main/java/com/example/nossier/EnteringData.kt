@@ -72,23 +72,33 @@ class EnteringData : AppCompatActivity() {
 
 
         SaveButton.setOnClickListener{
+            SaveButton.setOnClickListener {
+                val userId = mAuth.currentUser?.uid
+                if (userId != null) {
+                    val title = noteTitle.text.toString()
+                    val body = noteBoddy.text.toString()
+                    val date = noteDage.text.toString()
+                    val mood = moodTextView.text.toString()
 
-            val uid = FirebaseAuth.getInstance().currentUser?.uid
-            val database = FirebaseDatabase.getInstance()
-            val userNotesRef = uid?.let { it1 -> database.reference.child("users").child(it1).child("notes") }
+                    val note = Note(title, body, date, mood)
 
-            val noteId = userNotesRef?.push()?.key
-            val noteData = Note(noteTitle.text.toString(), noteBoddy.text.toString(), moodTextView.text.toString(), noteDage.text.toString())
-            if (noteId != null) {
-                userNotesRef.child(noteId).setValue(noteData)
+                    val userNotesRef = database.child("users").child(userId).child("notes")
+                    val newNoteRef = userNotesRef.push()
+                    newNoteRef.setValue(note).addOnCompleteListener { noteCreationTask ->
+                        if (noteCreationTask.isSuccessful) {
+                            Toast.makeText(this, "Note saved successfully", Toast.LENGTH_SHORT).show()
+                            finish()
+                        } else {
+                            Toast.makeText(this, "Failed to save note", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             }
+
+
+
         }
     }
-
-
-//    private fun saveNote() {
-//
-//    }
     private fun updateTextViewWithMoodName(moodName: String){
         moodTextView.text = moodName
     }

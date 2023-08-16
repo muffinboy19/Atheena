@@ -21,6 +21,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.auth.User
 
 class ContinueWithGoogle : AppCompatActivity() {
@@ -62,6 +63,25 @@ class ContinueWithGoogle : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val userId = firebaseAuth.currentUser?.uid
+                    Toast.makeText(this,userId,Toast.LENGTH_SHORT).show()
+                    if(userId!=null){
+
+                        val database = FirebaseDatabase.getInstance().reference
+                        Log.d(TAG, "Before setValue call")
+                        database.child("users").child(userId).setValue(true)
+                            .addOnCompleteListener { userCreationTask ->
+                                if (userCreationTask.isSuccessful) {
+                                    Log.d(TAG, "User added successfully")
+                                    Toast.makeText(this, "User added to the database", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Log.d(TAG, "Failed to add user to the database")
+                                    Toast.makeText(this, "Failed to add user to the database", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        Log.d(TAG, "After setValue call")
+
+                    }
                     hideLoadingView()
                     Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
                     val profileRegisterIntent = Intent(this, Homescreen::class.java)

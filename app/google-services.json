@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "507750685436",
+    "firebase_url": "https://dailyme-3c3f7-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "dailyme-3c3f7",
     "storage_bucket": "dailyme-3c3f7.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "507750685436-1guocmapnd60j9dsuk8jve6086jaq8qk.apps.googleusercontent.com",
+          "client_id": "507750685436-6n6f2u6pe0f84a0h81k3kfcbv07b6q0j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nossier",
+            "certificate_hash": "d87c82a6e9176f0ab8f34b0585d4ad73e28edfa4"
+          }
+        },
+        {
+          "client_id": "507750685436-5tlfi4c4b1i7000gpdpisr37f06bhvn4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
