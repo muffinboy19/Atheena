@@ -7,14 +7,16 @@
     tools:context=".entreis">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/notesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/ljhg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/notesRecylerView"
+            android:id="@+id/notesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_margin="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

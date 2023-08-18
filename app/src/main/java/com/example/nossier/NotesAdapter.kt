@@ -9,25 +9,30 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class NotesAdapter(private val notes: List<NoteEntity>) : RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
+class NotesAdapter(private val notes: List<Note>) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titleTextView: TextView = itemView.findViewById(R.id.noteTitle)
-        val timestampTextView: TextView = itemView.findViewById(R.id.noteDatenNTime)
+    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val notetitle: TextView = itemView.findViewById(R.id.titleview)
+        private val noteboddy: TextView = itemView.findViewById(R.id.boddyView)
+        private val notemood: TextView = itemView.findViewById(R.id.moddview)
+        private val notedate: TextView = itemView.findViewById(R.id.dateview)
+
+        fun bind(note: Note) {
+            notetitle.text = note.title
+            noteboddy.text = note.body
+            notemood.text = note.mood
+            notedate.text = note.date
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.note_layout, parent, false)
-        return ViewHolder(itemView)
+        return NoteViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val note = notes[position]
-
-        holder.titleTextView.text = note.title
-        holder.timestampTextView.text = SimpleDateFormat("dd MMM yyyy HH:mm:ss", Locale.getDefault()).format(
-            Date(note.timestamp)
-        )
+        holder.bind(note)
     }
 
     override fun getItemCount(): Int {

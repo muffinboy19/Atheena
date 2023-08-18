@@ -67,16 +67,6 @@ class create : DialogFragment() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-//        val datePickerDialog = DatePickerDialog(
-//            requireContext(),
-//            DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
-//                val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
-//                val intent = Intent(requireContext(), EnteringData::class.java)
-//                intent.putExtra("selectedDate", selectedDate)
-//                startActivity(intent)
-//            },
-//            year, month, day
-
          val datePickerDialog = DatePickerDialog(
              requireContext(),
              DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->

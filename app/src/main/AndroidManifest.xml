@@ -2,7 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
 
 
     <application
@@ -15,8 +23,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nossier"
         tools:targetApi="31">
+        <receiver
+            android:name=".Notification"
+            android:enabled="true"/>
         <activity
-            android:name=".ContinueWithGoogle"
+            android:name=".registerByemail"
+            android:exported="false" />
+        <activity
+            android:name=".login"
             android:exported="false" />
         <activity
             android:name=".Homescreen"
@@ -33,8 +47,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity
+            android:name=".reminder"
+            android:exported="false" /> <!-- Other activity definitions -->
+        <receiver android:name=".ReminderReceiver" />
     </application>
 
 </manifest>

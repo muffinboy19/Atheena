@@ -3,7 +3,6 @@ package com.example.nossier
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -12,7 +11,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -22,22 +20,54 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.auth.User
+//2
 
-class ContinueWithGoogle : AppCompatActivity() {
 
+class login : AppCompatActivity() {
 
     private val RC_SIGN_IN = 9001
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var loadingView: View
+
+    private lateinit var emailEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var loginButton: Button
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_continue_with_google)
+        setContentView(R.layout.activity_login)
         FirebaseApp.initializeApp(this)
         val google = findViewById<ImageView>(R.id.google)
         val google2 = findViewById<TextView>(R.id.googletext)
+
+
+        val registerByemail = findViewById<Button>(R.id.registerByemail)
+        registerByemail.setOnClickListener {
+            val intent = Intent(this,registerByemail::class.java)
+            startActivity(intent)
+            finish()
+        }
         loadingView = findViewById<View>(R.id.loadingView)
+
+
+        emailEditText = findViewById(R.id.loginEmail)
+        passwordEditText = findViewById(R.id.loginPassword)
+        loginButton = findViewById(R.id.loginnn)
+
+        loginButton.setOnClickListener {
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                signInWithEmailAndPassword(email, password)
+            } else {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -84,7 +114,7 @@ class ContinueWithGoogle : AppCompatActivity() {
                     }
                     hideLoadingView()
                     Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
-                    val profileRegisterIntent = Intent(this, Homescreen::class.java)
+                    val profileRegisterIntent = Intent(this, reminder::class.java)
                     startActivity(profileRegisterIntent)
                     finish()
                 } else {
@@ -106,6 +136,23 @@ class ContinueWithGoogle : AppCompatActivity() {
                 Log.w(TAG, "Google sign in failed", e)
             }
         }
+    }
+
+
+
+    private fun signInWithEmailAndPassword(email: String, password: String) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val userId = firebaseAuth.currentUser?.uid
+                    Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
+                    val profileRegisterIntent = Intent(this, Homescreen::class.java)
+                    startActivity(profileRegisterIntent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Login failed. Check your email and password.", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     private fun hideLoadingView() {

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+//4
 
 class Homescreen : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class Homescreen : AppCompatActivity() {
     private var createFragmentElevation: Float = 0f
 
     private   lateinit var fragmentContainer :FrameLayout
+    private   lateinit var fragmentContainer2 :FrameLayout
     private lateinit var bottomNavigation : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,8 @@ class Homescreen : AppCompatActivity() {
 
         createFragmentElevation = resources.getDimension(R.dimen.create_fragment_elevation)
         fragmentContainer = findViewById(R.id.fragment_container)
+        fragmentContainer2 = findViewById(R.id.boxo)
+
         bottomNavigation = findViewById(R.id.bottom_navigation)
          bottomNavigation  = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
@@ -48,11 +52,11 @@ class Homescreen : AppCompatActivity() {
 
         // Adjust elevation for Create fragment, and restore for other fragments
         if (fragment is create) {
-            fragmentContainer.elevation = createFragmentElevation
-            transaction.add(R.id.fragment_container, fragment)
+            fragmentContainer2.elevation = createFragmentElevation
+            transaction.add(R.id.boxo, fragment)
         } else {
-            fragmentContainer.elevation = 0f
-            transaction.replace(R.id.fragment_container, fragment)// Restore default elevation for other fragments
+            fragmentContainer2.elevation = 0f
+            transaction.replace(R.id.boxo, fragment)// Restore default elevation for other fragments
         }
 
         transaction.addToBackStack(null)

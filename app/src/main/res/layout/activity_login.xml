@@ -7,14 +7,13 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="320dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="28dp"
         android:background="@drawable/backk2"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="655dp">
 
         <ImageView
             android:id="@+id/google"
@@ -42,22 +41,48 @@
         layout="@layout/loading_layout"
         android:layout_width="104dp"
         android:layout_height="138dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="5dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/loginnn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="login"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="377dp" />
+
+    <Button
+        android:id="@+id/registerByemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="contiue with email "
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="592dp" />
+
+    <EditText
+        android:id="@+id/loginEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="236dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/imageView7"
+    <EditText
+        android:id="@+id/loginPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/creative_writing_rafiki" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
