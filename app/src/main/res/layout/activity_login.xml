@@ -61,83 +61,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_rawRes="@raw/alpha" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/loginnn"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/backk2"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Login"
-        android:elevation="5dp"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
-
-    <EditText
-        android:id="@+id/loginEmail"
-        android:layout_width="320dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="350dp"
-        android:background="@drawable/bacckg_1"
-        android:fontFamily="@font/roboto"
-        android:hint="Email"
-        android:inputType="text"
-        android:paddingStart="16dp"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="320dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bacckg_1"
-        android:fontFamily="@font/roboto"
-        android:hint="Password"
-        android:inputType="text"
-        android:textSize="15sp"
-        android:paddingStart="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
-
-    <LinearLayout
-        android:id="@+id/registerByemail"
-        android:layout_width="320dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/backk2"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:paddingVertical="6dp"
-            app:srcCompat="@drawable/baseline_email_24" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:gravity="center_vertical"
-            android:paddingStart="10dp"
-            android:text="Continue with e-mail"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </LinearLayout>
 
     <View
         android:id="@+id/view"
@@ -145,12 +68,25 @@
         android:layout_height="1dp"
         android:layout_marginStart="35dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/registerByemail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="135dp"
+        android:fontFamily="@font/allura"
+        android:text="Daily me"
+        android:textColor="@color/app_clor"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/alpha" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

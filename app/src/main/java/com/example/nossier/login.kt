@@ -48,29 +48,9 @@ class login : AppCompatActivity() {
         alpha.playAnimation()
         alpha.loop(true)
 
-        val registerByemail = findViewById<LinearLayout>(R.id.registerByemail)
-        registerByemail.setOnClickListener {
-            val intent = Intent(this,registerByemail::class.java)
-            startActivity(intent)
-            finish()
-        }
+
         loadingView = findViewById<View>(R.id.loadingView)
 
-
-        emailEditText = findViewById(R.id.loginEmail)
-        passwordEditText = findViewById(R.id.loginPassword)
-        loginButton = findViewById(R.id.loginnn)
-
-        loginButton.setOnClickListener {
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
-
-            if (email.isNotEmpty() && password.isNotEmpty()) {
-                signInWithEmailAndPassword(email, password)
-            } else {
-                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
-            }
-        }
 
 
 
@@ -144,20 +124,7 @@ class login : AppCompatActivity() {
 
 
 
-    private fun signInWithEmailAndPassword(email: String, password: String) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val userId = firebaseAuth.currentUser?.uid
-                    Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
-                    val profileRegisterIntent = Intent(this, Homescreen::class.java)
-                    startActivity(profileRegisterIntent)
-                    finish()
-                } else {
-                    Toast.makeText(this, "Login failed. Check your email and password.", Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
+
 
     private fun hideLoadingView() {
         loadingView.visibility = View.GONE
