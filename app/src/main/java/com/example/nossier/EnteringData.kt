@@ -1,5 +1,7 @@
 package com.example.nossier
 
+import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,14 +17,17 @@ import java.util.Date
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.auth.FirebaseAuth
 import android.graphics.Typeface
+import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.CharacterStyle
 import android.text.style.ForegroundColorSpan
+import jp.wasabeef.richeditor.RichEditor
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.core.content.ContextCompat
+
 
 class EnteringData : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -33,28 +38,33 @@ class EnteringData : AppCompatActivity() {
     private lateinit var SaveButton: ImageView
     private val database = FirebaseDatabase.getInstance().reference.child("notes")
 
+
+
+    private lateinit var richEditor: RichEditor
+    private lateinit var boldButton: ImageButton
+    private lateinit var italicButton: ImageButton
+    private lateinit var underlineButton: ImageButton
+    private lateinit var colorButton: ImageButton
+    private lateinit var ss: EditText
+
+    private lateinit var sharedPreferences: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entering_data)
-        
-        val boldButton = findViewById<Button>(R.id.bold)
-        val italicButton = findViewById<Button>(R.id.italics)
-        val underlineButton = findViewById<ImageButton>(R.id.underlineButton)
-        val colorButton = findViewById<ImageButton>(R.id.colorButton)
 
-        boldButton.setOnClickListener { applyStyleSpan(StyleSpan(Typeface.BOLD)) }
-        italicButton.setOnClickListener { applyStyleSpan(StyleSpan(Typeface.ITALIC)) }
-     //   underlineButton.setOnClickListener { applyUnderlineSpan(UnderlineSpan()) }
-        colorButton.setOnClickListener { showColorPickerDialog() }
+
 
 
         FirebaseApp.initializeApp(this)
         mAuth = FirebaseAuth.getInstance()
 
          noteBoddy = findViewById<EditText>(R.id.EditTextViewBody)
-         noteTitle = findViewById<EditText>(R.id.EditTextViewTitle)
+        noteTitle = findViewById<EditText>(R.id.EditTextViewTitle)
          SaveButton = findViewById<ImageView>(R.id.SaveButton)
          noteDage = findViewById<TextView>(R.id.TextViewDisplayDate)
+
+
 
 
         val formattedDate = intent.getLongExtra("selectedDate", -1)
@@ -116,37 +126,48 @@ class EnteringData : AppCompatActivity() {
         }
     }
 
-    private fun applyStyleSpan(span: CharacterStyle) {
-        applySpan(span)
-    }
 
-    private fun applyUnderlineSpan(span: CharacterStyle) {
-        applySpan(span)
-    }
+    private fun applyStyleToSelection(style: CharacterStyle) {
+        val editableText = ss.editableText
+        val selectionStart = ss.selectionStart
+        val selectionEnd = ss.selectionEnd
 
-    private fun applyForegroundColorSpan(span: CharacterStyle) {
-        applySpan(span)
-    }
-    private fun applySpan(span: CharacterStyle) {
-        val startIndex = noteBoddy.selectionStart
-        val endIndex = noteBoddy.selectionEnd
-
-        if (startIndex != endIndex) {
-            val selectedText = noteBoddy.text.subSequence(startIndex, endIndex)
-            val spannable = SpannableStringBuilder(noteBoddy.text)
-            spannable.setSpan(span, startIndex, endIndex, SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE)
-            noteBoddy.text = spannable
+        if (selectionStart != selectionEnd) {
+            // Apply style to selected text range
+            editableText.setSpan(style, selectionStart, selectionEnd, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
     }
 
-    private fun showColorPickerDialog() {
-        // Implement a color picker dialog to allow users to choose text color.
-        // You can use third-party libraries or Android's ColorPickerDialog.
-        // Once a color is selected, call applyForegroundColorSpan with the chosen color.
-        val selectedColor = ContextCompat.getColor(this, R.color.app_clor) // Replace with the selected color
-        val colorSpan = ForegroundColorSpan(selectedColor)
-        applyForegroundColorSpan(colorSpan)
+    private fun setupFormattingButtons() {
+        boldButton.setOnClickListener {
+            richEditor.setBold()
+        }
+
+        italicButton.setOnClickListener {
+            richEditor.setItalic()
+        }
+
+        underlineButton.setOnClickListener {
+            richEditor.setUnderline()
+        }
+
+        colorButton.setOnClickListener {
+            richEditor.setTextColor(Color.RED) // Replace with desired color
+        }
     }
+
+    private fun saveContent() {
+        val content = richEditor.html
+        sharedPreferences.edit().putString("editor_content", content).apply()
+    }
+
+    private fun loadContent() {
+        val loadedContent = sharedPreferences.getString("editor_content", "")
+        richEditor.setHtml(loadedContent)
+    }
+
+
+
 
     private fun updateTextViewWithMoodName(moodName: String){
         moodTextView.text = moodName

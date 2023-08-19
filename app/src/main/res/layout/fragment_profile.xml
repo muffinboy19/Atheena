@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/googlephoto"
+            android:id="@+id/profileImageView"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="56dp"
@@ -34,16 +34,19 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
 
+
         <TextView
-            android:id="@+id/googleemailid"
+            android:id="@+id/emailTextView"
             android:layout_width="320dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="31dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.637"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/googlephoto" />
-
+            app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 
         <TextView
             android:id="@+id/textView11"
@@ -55,7 +58,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/googleemailid" />
+            app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
         <ImageView
             android:id="@+id/pressme"
@@ -67,16 +70,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-        <VideoView
-            android:id="@+id/noxo"
+        <TextView
+            android:id="@+id/selectedTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="2dp"
+            android:layout_marginBottom="41dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="You are slected for GeekHaven"
+            android:textColor="#092BE8"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

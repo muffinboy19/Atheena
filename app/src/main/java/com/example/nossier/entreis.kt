@@ -50,8 +50,6 @@ class entreis : Fragment() {
 
                 override fun onDataChange(snapshot: DataSnapshot) {
                     moodCountMap.clear()
-
-                    Toast.makeText(requireContext(),"busssa",Toast.LENGTH_SHORT).show()
                     val notesList = mutableListOf<Note>()
                         for (noteSnapshot in snapshot.children) {
                             val note = noteSnapshot.getValue(Note::class.java)

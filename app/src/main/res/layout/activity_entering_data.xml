@@ -12,42 +12,6 @@
         android:layout_height="800dp"
         tools:context=".EnteringData">
 
-        <EditText
-            android:id="@+id/EditTextViewBody"
-            android:layout_width="312dp"
-            android:layout_height="125dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bacckg_1"
-            android:gravity="start"
-            android:hint="Add Note..."
-            android:paddingStart="10dp"
-            android:paddingTop="10dp"
-            android:textColorHint="#BDBEC2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewBody" />
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/bold"/>
-        <Button
-            android:layout_width="50dp"
-            android:id="@+id/italics"
-            android:layout_height="50dp"/>
-        <ImageButton
-            android:id="@+id/underlineButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_edit"
-            android:contentDescription="Underline" />
-
-        <ImageButton
-            android:id="@+id/colorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_edit"
-            android:contentDescription="Color" />
-
 
         <LinearLayout
             android:id="@+id/cameraphoto"
@@ -140,12 +104,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
 
+        <EditText
+            android:id="@+id/EditTextViewBody"
+            android:layout_width="320dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bacckg_1"
+            android:gravity="start"
+            android:hint="Add Note..."
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:textColorHint="#BDBEC2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewBody" />
+
         <TextView
             android:id="@+id/TextViewDisplayDate"
             android:layout_width="100dp"
             android:layout_height="32dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/bacckg_1"
             android:gravity="start"
             android:paddingStart="10dp"
@@ -153,7 +132,7 @@
             android:paddingEnd="5dp"
             android:textColorHint="#BDBEC2"
             app:layout_constraintStart_toEndOf="@+id/textViewDate"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextViewTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/EditTextViewBody" />
 
         <TextView
             android:id="@+id/textViewDisplayMood"
@@ -174,10 +153,11 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginStart="14dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextViewBody">
+            app:layout_constraintTop_toBottomOf="@+id/TextViewDisplayDate">
+
 
             <ImageView
                 android:id="@+id/imageVie2w2"
@@ -198,6 +178,10 @@
                 android:text="Photo"
                 android:textSize="18sp" />
         </LinearLayout>
+
+
+
+
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -301,7 +285,7 @@
             android:text="Date"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextViewTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/EditTextViewBody" />
 
         <TextView
             android:id="@+id/TextViewBody"
@@ -309,7 +293,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:layout_weight="0"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center_vertical"
@@ -318,7 +302,7 @@
             android:text="Body"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDate" />
+            app:layout_constraintTop_toBottomOf="@+id/EditTextViewTitle" />
 
         <TextView
             android:id="@+id/TextViewmood"
