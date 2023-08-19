@@ -2,10 +2,13 @@ package com.example.nossier
 
 import android.Manifest
 import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TimePicker
@@ -14,89 +17,83 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import java.util.*
 
 class reminder : AppCompatActivity() {
 
-
     private lateinit var alarmManager: AlarmManager
     private lateinit var pendingIntent: PendingIntent
-    private lateinit var timePicker: TimePicker
+    private lateinit var timePicker:  MaterialTimePicker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder)
 
-
-
-
-        val channelId = "reminder_channel"
-        val notificationId = 1 // You can use a unique ID for each notification
-
-        val notification = context?.let {
-            NotificationCompat.Builder(it, channelId)
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("Reminder")
-                .setContentText("Time for your reminder!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-                .build()
-        }
-
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.POST_NOTIFICATIONS
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            return
-        }
-        if (notification != null) {
-            this.let { NotificationManagerCompat.from(it) }
-                .notify(notificationId, notification)
-        }
-
-
-
-
-
-
-
-
-
-
-
-
+        createNotification()
         alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val nextButton = findViewById<Button>(R.id.nextButton)
-        timePicker = findViewById(R.id.timePicker)
+//        timePicker = findViewById(R.id.timePicker)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channelId = "reminder_channel"
+            val channelName = "Reminder Channel"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelId, channelName, importance)
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager?.createNotificationChannel(channel)
+        }
+
+
+        showTimePicker()
+
+
         nextButton.setOnClickListener {
-            setReminder()
+
+
+        }
+    }
+
+    private fun showTimePicker() {
+        timePicker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(12)
+            .setMinute(0)
+            .setTitleText("Select Alarm Time")
+            .build()
+
+        timePicker.show(supportFragmentManager,"gaurav")
+        timePicker.addOnPositiveButtonClickListener{
+
+            if(timePicker.hour > 12){
+
+            }
         }
 
     }
 
-    private fun setReminder() {
-        val selectedHour = timePicker.hour
-        val selectedMinute = timePicker.minute
 
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, selectedHour)
-        calendar.set(Calendar.MINUTE, selectedMinute)
-        calendar.set(Calendar.SECOND, 0)
 
-        val intent = Intent(this, Recciver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis,
-            AlarmManager.INTERVAL_DAY, pendingIntent)
+    private fun createNotification() {
 
-        showToast("Reminder set for $selectedHour:$selectedMinute")
-        val noox  = Intent(this,Homescreen::class.java)
-        startActivity(noox)
 
+
+
+
+
+        val name  = "gaurav"
+        val description = "Channel For alarm Manger"
+        val importance = NotificationManager.IMPORTANCE_HIGH
+        val channel = NotificationChannel("gaurav",name,importance)
+        channel.description = description
+        val notificationManager = getSystemService(
+            NotificationManager::class.java
+        )
+        notificationManager.createNotificationChannel(channel,)
+
+
+        //}
     }
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
+
 }

@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">nossier</string>
+    <string name="app_name" translatable="false">DailyMe</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="default_web_client_id">9022772397\n</string>
-    <string name="title_activity_baxa">baxa</string>
-    <string name="large_text">
+    <string name="title_activity_baxa" translatable="false">baxa</string>
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."

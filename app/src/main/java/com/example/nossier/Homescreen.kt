@@ -45,7 +45,7 @@ class Homescreen : AppCompatActivity() {
             true
         }
 
-        replaceFragment(profileFragment)
+        replaceFragment(entriesFragment)
     }
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()

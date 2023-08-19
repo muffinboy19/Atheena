@@ -9,8 +9,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -29,7 +31,6 @@ class login : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var loadingView: View
-
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: Button
@@ -43,8 +44,11 @@ class login : AppCompatActivity() {
         val google = findViewById<ImageView>(R.id.google)
         val google2 = findViewById<TextView>(R.id.googletext)
 
+        val alpha: LottieAnimationView = findViewById(R.id.alpha)
+        alpha.playAnimation()
+        alpha.loop(true)
 
-        val registerByemail = findViewById<Button>(R.id.registerByemail)
+        val registerByemail = findViewById<LinearLayout>(R.id.registerByemail)
         registerByemail.setOnClickListener {
             val intent = Intent(this,registerByemail::class.java)
             startActivity(intent)
@@ -114,7 +118,7 @@ class login : AppCompatActivity() {
                     }
                     hideLoadingView()
                     Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
-                    val profileRegisterIntent = Intent(this, reminder::class.java)
+                    val profileRegisterIntent = Intent(this, Homescreen::class.java)
                     startActivity(profileRegisterIntent)
                     finish()
                 } else {

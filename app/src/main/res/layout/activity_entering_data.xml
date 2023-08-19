@@ -26,6 +26,28 @@
             android:textColorHint="#BDBEC2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TextViewBody" />
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/bold"/>
+        <Button
+            android:layout_width="50dp"
+            android:id="@+id/italics"
+            android:layout_height="50dp"/>
+        <ImageButton
+            android:id="@+id/underlineButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_edit"
+            android:contentDescription="Underline" />
+
+        <ImageButton
+            android:id="@+id/colorButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_edit"
+            android:contentDescription="Color" />
+
 
         <LinearLayout
             android:id="@+id/cameraphoto"

@@ -14,12 +14,19 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.auth.FirebaseAuth
-
+import android.graphics.Typeface
+import android.text.SpannableStringBuilder
+import android.text.style.CharacterStyle
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
+import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.core.content.ContextCompat
 
 class EnteringData : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private val moodTextView: TextView by lazy {findViewById<TextView>(R.id.textViewDisplayMood)}
-
     private lateinit var noteTitle: EditText
     private lateinit var noteBoddy: EditText
     private lateinit var noteDage: TextView
@@ -29,6 +36,16 @@ class EnteringData : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_entering_data)
+        
+        val boldButton = findViewById<Button>(R.id.bold)
+        val italicButton = findViewById<Button>(R.id.italics)
+        val underlineButton = findViewById<ImageButton>(R.id.underlineButton)
+        val colorButton = findViewById<ImageButton>(R.id.colorButton)
+
+        boldButton.setOnClickListener { applyStyleSpan(StyleSpan(Typeface.BOLD)) }
+        italicButton.setOnClickListener { applyStyleSpan(StyleSpan(Typeface.ITALIC)) }
+     //   underlineButton.setOnClickListener { applyUnderlineSpan(UnderlineSpan()) }
+        colorButton.setOnClickListener { showColorPickerDialog() }
 
 
         FirebaseApp.initializeApp(this)
@@ -96,9 +113,41 @@ class EnteringData : AppCompatActivity() {
             }
 
 
-
         }
     }
+
+    private fun applyStyleSpan(span: CharacterStyle) {
+        applySpan(span)
+    }
+
+    private fun applyUnderlineSpan(span: CharacterStyle) {
+        applySpan(span)
+    }
+
+    private fun applyForegroundColorSpan(span: CharacterStyle) {
+        applySpan(span)
+    }
+    private fun applySpan(span: CharacterStyle) {
+        val startIndex = noteBoddy.selectionStart
+        val endIndex = noteBoddy.selectionEnd
+
+        if (startIndex != endIndex) {
+            val selectedText = noteBoddy.text.subSequence(startIndex, endIndex)
+            val spannable = SpannableStringBuilder(noteBoddy.text)
+            spannable.setSpan(span, startIndex, endIndex, SpannableStringBuilder.SPAN_EXCLUSIVE_EXCLUSIVE)
+            noteBoddy.text = spannable
+        }
+    }
+
+    private fun showColorPickerDialog() {
+        // Implement a color picker dialog to allow users to choose text color.
+        // You can use third-party libraries or Android's ColorPickerDialog.
+        // Once a color is selected, call applyForegroundColorSpan with the chosen color.
+        val selectedColor = ContextCompat.getColor(this, R.color.app_clor) // Replace with the selected color
+        val colorSpan = ForegroundColorSpan(selectedColor)
+        applyForegroundColorSpan(colorSpan)
+    }
+
     private fun updateTextViewWithMoodName(moodName: String){
         moodTextView.text = moodName
     }
